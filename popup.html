@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Google フォト一括削除</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+
+  <!-- ヘッダー -->
+  <div class="header">
+    <h1>🗑️ Google フォト一括削除</h1>
+    <span class="plan-badge" id="plan-badge">無料版</span>
+  </div>
+
+  <!-- 警告バナー -->
+  <div class="warning-banner">
+    <p class="warn-main">⚠️ 削除した写真は60日後に完全削除されます</p>
+    <p class="warn-sub">重要な写真は事前にバックアップしてください</p>
+  </div>
+
+  <!-- タブ -->
+  <div class="tab-bar">
+    <button class="tab-btn active" data-tab="main">メイン</button>
+    <button class="tab-btn" data-tab="history">履歴 <span class="pro-badge">PRO</span></button>
+  </div>
+
+  <!-- メインタブ -->
+  <div id="tab-main" class="tab-content">
+    <div class="main-section">
+
+      <!-- 削除上限 -->
+      <div class="limit-info" id="limit-info">
+        本日残り：<strong id="remaining-count">200</strong> 枚
+      </div>
+
+      <!-- 削除速度 -->
+      <div class="speed-row">
+        <span class="speed-label">削除速度</span>
+        <div class="speed-btns">
+          <button class="speed-btn active" id="btn-normal">通常</button>
+          <button class="speed-btn" id="btn-fast">
+            高速 ⚡ <span class="pro-badge">PRO</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 日付範囲フィルター Pro -->
+      <div class="pro-section" id="date-section">
+        <div class="pro-section-label">削除対象期間 <span class="pro-badge">PRO</span></div>
+        <div class="date-rows">
+          <div class="date-row">
+            <span class="date-row-label">開始</span>
+            <select id="date-from-y" class="date-select"><option value="">年</option></select>
+            <select id="date-from-m" class="date-select"><option value="">月</option></select>
+          </div>
+          <div class="date-row">
+            <span class="date-row-label">終了</span>
+            <select id="date-to-y" class="date-select"><option value="">年</option></select>
+            <select id="date-to-m" class="date-select"><option value="">月</option></select>
+          </div>
+        </div>
+        <p class="date-hint">未選択の場合は全期間が対象です</p>
+        <div class="pro-lock-overlay hidden" id="date-lock"><span>Pro版で使えます</span></div>
+      </div>
+
+      <!-- アクションボタン -->
+      <button id="start-btn" class="btn-start">削除を開始する</button>
+      <button id="stop-btn" class="btn-stop hidden">削除を停止する</button>
+
+      <!-- エラーメッセージ -->
+      <p id="error-msg" class="error-msg hidden"></p>
+
+      <!-- 進捗 -->
+      <div class="progress-area">
+        <span id="progress-count">0</span> 枚削除完了
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 履歴タブ -->
+  <div id="tab-history" class="tab-content hidden">
+    <div class="history-wrapper">
+      <div class="history-section" id="history-section"></div>
+      <div class="pro-lock-overlay history-overlay hidden" id="history-lock">
+        <span>Pro版で使えます</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ライセンス認証 -->
+  <div class="license-section">
+    <div class="license-row">
+      <input type="text" id="license-input"
+             placeholder="ライセンスキーを入力" maxlength="100" spellcheck="false">
+      <button id="license-btn">認証する</button>
+    </div>
+    <p id="license-status" class="license-status"></p>
+  </div>
+
+  <!-- フッター -->
+  <div class="footer-links">
+    <a id="pro-link"
+       href="https://aiunyoulabo.gumroad.com/l/wmuisr"
+       target="_blank">▶ Pro版で無制限に削除する</a>
+    <a id="feedback-link"
+       href="https://forms.gle/5wLiaYnetc3hrXzR6"
+       target="_blank">不具合・改善報告</a>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
